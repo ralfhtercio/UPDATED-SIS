@@ -31,7 +31,7 @@ def add_student_rec(studid, studname, studyear, studcourseid, studgender):
         return True
     except sqlite3.IntegrityError:
         if studcourseid not in list_of_courses():
-            messagebox.showerror("Error", "Course ID not in database")
+            messagebox.showerror("Error", "Course CODE not in database")
         else:
             messagebox.showerror("Error", "Student ID already in database.")
         return False
@@ -47,7 +47,7 @@ def add_course_rec(course_id, course_name):
         con.close()
         return True
     except sqlite3.IntegrityError:
-        messagebox.showerror("Error", "Course ID already in database.")
+        messagebox.showerror("Error", "Course CODE already in database.")
         return False
 
 
@@ -87,7 +87,7 @@ def delete_course_rec(course_id):
     try:
         cur.execute("DELETE FROM coursedata WHERE course_id=?", (course_id,))
     except sqlite3.IntegrityError:
-        messagebox.showerror("Error", "You cannot delete this course. Students are enrolled in this course.")
+        messagebox.showerror("Error", "Students are enrolled in this course.You cannot delete this course.")
         return False
     con.commit()
     con.close()
@@ -110,7 +110,7 @@ def update_student_rec(key, studid, studname, studyear, studcourseid, studgender
         return True
     except sqlite3.IntegrityError:
         if studcourseid not in list_of_courses():
-            messagebox.showerror("Error", "Course ID not in database")
+            messagebox.showerror("Error", "Course CODE not in database")
         else:
             messagebox.showerror("Error", "Student ID already in database.")
         return False
@@ -130,7 +130,7 @@ def update_course_rec(key, course_id, course_name):
         con.close()
         return True
     except sqlite3.IntegrityError:
-        messagebox.showerror("Error", "Course ID already in database.")
+        messagebox.showerror("Error", "Course CODE already in database.")
         return False
 
 
